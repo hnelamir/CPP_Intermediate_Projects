@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/build",
+  "command": "/usr/bin/g++  -I/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/includes -I/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/utils -g -o CMakeFiles/Bakery.dir/src/main.cpp.o -c /home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/src/main.cpp",
+  "file": "/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/src/main.cpp"
+}
+]

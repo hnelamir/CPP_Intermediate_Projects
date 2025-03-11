@@ -1,0 +1,3 @@
+/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/build/CMakeFiles/Bakery.dir
+/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/build/CMakeFiles/edit_cache.dir
+/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/build/CMakeFiles/rebuild_cache.dir
