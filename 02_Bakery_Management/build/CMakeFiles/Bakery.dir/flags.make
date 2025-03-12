@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/includes -I/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/utils
+CXX_INCLUDES = -I/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Management/includes -I/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Management/utils
 
 CXX_FLAGS = -g
 

@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/src/main.cpp" "CMakeFiles/Bakery.dir/src/main.cpp.o" "gcc" "CMakeFiles/Bakery.dir/src/main.cpp.o.d"
+  "/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Management/src/main.cpp" "CMakeFiles/Bakery.dir/src/main.cpp.o" "gcc" "CMakeFiles/Bakery.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.

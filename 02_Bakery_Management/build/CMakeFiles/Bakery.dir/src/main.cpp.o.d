@@ -1,5 +1,5 @@
 CMakeFiles/Bakery.dir/src/main.cpp.o: \
- /home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Managment/src/main.cpp \
+ /home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/02_Bakery_Management/src/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
