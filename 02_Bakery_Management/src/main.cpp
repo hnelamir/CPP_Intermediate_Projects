@@ -9,7 +9,8 @@ void vecInit(std::vector<std::string>& today,std::vector<std::string>& pre,std::
 void WelcomeScreen();
 void menuOptions();
 void newOrders(std::vector<std::string>& cust,std::vector<std::string>& today);
-void editOrders(std::vector<std::string>& today);
+void editOrders(std::vector<std::string>& today,std::vector<std::string>& cust);
+void print_1st_3rd_last(std::vector<std::string>& today);
 
 /*---------------------Main---------------------------------*/
 
@@ -20,6 +21,7 @@ int main(){
      * 3. make print function for options menu.
      * 4. make function to add new customer orders & add it to new orders.
      * 5. edit the today order list and remove orders from it.
+     * 6. print first and 3rd and last order.
      */
     char menuInput; // Input from user
     std::vector<std::string> todayOrders, prePrepared,customerOrder;
@@ -38,10 +40,10 @@ int main(){
             newOrders(customerOrder,todayOrders);
             break;
         case '2':
-            editOrders(todayOrders);
+            editOrders(todayOrders,customerOrder);
             break;
         case '3' :
-            std::cout<<menuInput<<std::endl;
+            print_1st_3rd_last(todayOrders);
             break;
         case '4':
             std::cout<<menuInput<<std::endl;
@@ -148,7 +150,7 @@ void newOrders(std::vector<std::string>& cust,std::vector<std::string>& today){
 
 }
 
-void editOrders(std::vector<std::string>& today){
+void editOrders(std::vector<std::string>& today,std::vector<std::string>& cust){
     std::string editedOrder;
     std::cout<<"Today's are ";
     std::cout<<"{ ";
@@ -168,8 +170,11 @@ void editOrders(std::vector<std::string>& today){
         today.erase(today.begin());
     }
      */
-    if (std::find(today.begin(),today.end(),editedOrder)!=today.end()){
-        today.erase(std::find(today.begin(),today.end(),editedOrder));
+    std::vector<std::string>::iterator todayPos=std::find(today.begin(),today.end(),editedOrder);
+    std::vector<std::string>::iterator custPos=std::find(cust.begin(),cust.end(),editedOrder);
+    if (todayPos!=today.end()){ 
+        today.erase(todayPos);
+        cust.erase(custPos);
         std::cout<<"Odrder \" "<<editedOrder<<"\" deleted \n";
     }
     else{
@@ -184,4 +189,27 @@ void editOrders(std::vector<std::string>& today){
         std::cout<<order<<" , ";
     }
     std::cout<<" } \n";
+}
+
+void print_1st_3rd_last(std::vector<std::string>& today){
+    size_t toSize =today.size();
+    std::cout<<"the today orders only contain "<<today.size()<<" orders\n";
+    //first check if the vector have more than 3 orders
+    if(toSize<=3){
+        if(toSize=3){
+            std::cout<<"the today orders only contain "<<today.size()<<" orders\n";
+            std::cout<<today.at(0)<<std::endl;
+            std::cout<<today.at(2)<<std::endl;}
+        else if(toSize==1){
+            std::cout<<"the today orders only contain "<<today.size()<<" orders\n";
+            std::cout<<today.at(0)<<std::endl;
+        }
+        else if (toSize==0){
+            std::cout<<"The Today orders are empty\n";
+        }
+    }else if(toSize>=3){
+        std::cout<<"{ ";
+        std::cout<<today.at(0)<<", "<<today.at(2)<<", "<<today.at(toSize-1);
+        std::cout<<" }\n";
+    }
 }
