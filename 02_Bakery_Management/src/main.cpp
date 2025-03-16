@@ -11,6 +11,7 @@ void menuOptions();
 void newOrders(std::vector<std::string>& cust,std::vector<std::string>& today);
 void editOrders(std::vector<std::string>& today,std::vector<std::string>& cust);
 void print_1st_3rd_last(std::vector<std::string>& today);
+void prePreparedItems(std::vector<std::string>& preItems,std::vector<std::string>& today);
 
 /*---------------------Main---------------------------------*/
 
@@ -22,6 +23,8 @@ int main(){
      * 4. make function to add new customer orders & add it to new orders.
      * 5. edit the today order list and remove orders from it.
      * 6. print first and 3rd and last order.
+     * 7. insert pre-prepared items to today list.
+     *  
      */
     char menuInput; // Input from user
     std::vector<std::string> todayOrders, prePrepared,customerOrder;
@@ -46,7 +49,7 @@ int main(){
             print_1st_3rd_last(todayOrders);
             break;
         case '4':
-            std::cout<<menuInput<<std::endl;
+            prePreparedItems(prePrepared,todayOrders);
             break;
         case '5':
             std::cout<<menuInput<<std::endl;    
@@ -121,7 +124,9 @@ void newOrders(std::vector<std::string>& cust,std::vector<std::string>& today){
     } else {
         std::cout << "order already exists!!\n";
     }*/ 
-    if (std::find(cust.begin(), cust.end(), newCustOrder) != cust.end()) {
+    auto custIt=std::find(cust.begin(), cust.end(), newCustOrder);
+    auto todayIt=std::find(today.begin(), today.end(), newCustOrder);
+    if (custIt!= cust.end() || todayIt!=today.end()) {
         std::cout << "order already exists!!\n";
     } else {
         cust.push_back(newCustOrder);
@@ -212,4 +217,23 @@ void print_1st_3rd_last(std::vector<std::string>& today){
         std::cout<<today.at(0)<<", "<<today.at(2)<<", "<<today.at(toSize-1);
         std::cout<<" }\n";
     }
+}
+
+void prePreparedItems(std::vector<std::string>& preItems,std::vector<std::string>& today){
+    std::cout<<"Pre-prepared items are : { ";
+    for(const std::string& pre:preItems){
+        std::cout<<pre<<", ";
+    }
+    std::cout<<"}\n";
+    today.insert(today.begin(),preItems.begin(),preItems.end());
+    std::cout<<"Today's are ";
+    std::cout<<"{ ";
+    for (const std::string& order :today){ 
+        /*we use `const` to know that loop purpose is to access the elements, not alter them.
+        *we use `&` to avoid make copy of each string. 
+        */
+        std::cout<<order<<" , ";
+    }
+    std::cout<<" } \n";
+
 }
