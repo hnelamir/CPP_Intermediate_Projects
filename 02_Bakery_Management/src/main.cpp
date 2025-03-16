@@ -15,6 +15,8 @@ void editOrders(std::vector<std::string>& today,std::vector<std::string>& cust);
 void print_1st_3rd_last(std::vector<std::string>& today);
 void prePreparedItems(std::vector<std::string>& preItems,std::vector<std::string>& today);
 void PrintOrder(const std::vector<std::string>& today);
+void optimizeOrder(std::vector<std::string>& today);
+void clearOrders(std::vector<std::string>& today,std::vector<std::string>& cust);
 
 /*---------------------Main---------------------------------*/
 
@@ -27,7 +29,9 @@ int main(){
      * 5. edit the today order list and remove orders from it.
      * 6. print first and 3rd and last order.
      * 7. insert pre-prepared items to today list.
-     * 8. print Today orders details
+     * 8. print Today orders details.
+     * 9. optimize today order list .
+     * 10. clear all orders lists.
      */
     char menuInput; // Input from user
     std::vector<std::string> todayOrders, prePrepared,customerOrder;
@@ -59,10 +63,10 @@ int main(){
             PrintOrder(todayOrders);
             break;
         case '6' :
-            std::cout<<menuInput<<std::endl;   
+            optimizeOrder(todayOrders); 
             break;
         case '7':
-            std::cout<<menuInput<<std::endl;
+            clearOrders(todayOrders,customerOrder);
             break;
         case '8':
             std::cout<<"Good Bye Cheif!!\n";
@@ -249,4 +253,14 @@ void PrintOrder(const std::vector<std::string>& today){
     std::cout<<"Today size { "<<today.size()<<"}\n";
     std::cout<<"Today capacity { "<<today.capacity()<<"}\n";
 
+}
+void optimizeOrder(std::vector<std::string>& today){
+    today.shrink_to_fit();
+    std::cout<<"todays order optimized !\n";
+}
+
+void clearOrders(std::vector<std::string>& today,std::vector<std::string>& cust){
+    today.clear();
+    cust.clear();
+    std::cout<<"lists Cleared !\n";
 }
