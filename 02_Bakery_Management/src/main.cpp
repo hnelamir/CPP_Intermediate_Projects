@@ -206,7 +206,7 @@ void print_1st_3rd_last(std::vector<std::string>& today){
     std::cout<<"the today orders only contain "<<today.size()<<" orders\n";
     //first check if the vector have more than 3 orders
     if(toSize<=3){
-        if(toSize=3){
+        if(toSize==3){
             std::cout<<"the today orders only contain "<<today.size()<<" orders\n";
             std::cout<<today.at(0)<<std::endl;
             std::cout<<today.at(2)<<std::endl;}
