@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
-#include <unistd.h>
+// #include <unistd.h> //will use the chorono method becuase it's best practice
+#include <chrono>
+#include <thread>
 #include <string>
 #include <limits>
 #include <algorithm>
@@ -12,6 +14,7 @@ void newOrders(std::vector<std::string>& cust,std::vector<std::string>& today);
 void editOrders(std::vector<std::string>& today,std::vector<std::string>& cust);
 void print_1st_3rd_last(std::vector<std::string>& today);
 void prePreparedItems(std::vector<std::string>& preItems,std::vector<std::string>& today);
+void PrintOrder(const std::vector<std::string>& today);
 
 /*---------------------Main---------------------------------*/
 
@@ -24,12 +27,13 @@ int main(){
      * 5. edit the today order list and remove orders from it.
      * 6. print first and 3rd and last order.
      * 7. insert pre-prepared items to today list.
-     *  
+     * 8. print Today orders details
      */
     char menuInput; // Input from user
     std::vector<std::string> todayOrders, prePrepared,customerOrder;
     WelcomeScreen();
-    sleep(1);
+    // sleep(1); // will use chorono innstead.
+    std::this_thread::sleep_for(std::chrono::seconds(1)); //more indepandent and c++11.
     vecInit(todayOrders,prePrepared,customerOrder);
     while (1) // another Alternatives using Do while loop,
     {   
@@ -52,7 +56,7 @@ int main(){
             prePreparedItems(prePrepared,todayOrders);
             break;
         case '5':
-            std::cout<<menuInput<<std::endl;    
+            PrintOrder(todayOrders);
             break;
         case '6' :
             std::cout<<menuInput<<std::endl;   
@@ -61,13 +65,11 @@ int main(){
             std::cout<<menuInput<<std::endl;
             break;
         case '8':
-            std::cout<<menuInput<<std::endl;
-            break;
-        case '9' :
-            std::cout<<menuInput<<std::endl;
+            std::cout<<"Good Bye Cheif!!\n";
             return 0;
             break;
         default:
+            std::cout<<"Wrong input! try again \n";
             break;
         }
     }
@@ -96,11 +98,10 @@ void menuOptions(){
     std::cout<<"2.Edit the order list\n";
     std::cout<<"3.Print first , third ,last order.\n";
     std::cout<<"4.Insert pre-prepared items.\n";
-    std::cout<<"5.Add Large order.\n";
+    std::cout<<"5.Print Order list information.\n";
     std::cout<<"6.Optmize Orders vector.\n";
-    std::cout<<"7.Print Order list information.\n";
-    std::cout<<"8.Clear list.\n";
-    std::cout<<"9.Exit Program\n";
+    std::cout<<"7.Clear list.\n";
+    std::cout<<"8.Exit Program\n";
 }
 void newOrders(std::vector<std::string>& cust,std::vector<std::string>& today){
     std::string newCustOrder;
@@ -235,5 +236,17 @@ void prePreparedItems(std::vector<std::string>& preItems,std::vector<std::string
         std::cout<<order<<" , ";
     }
     std::cout<<" } \n";
+
+}
+
+void PrintOrder(const std::vector<std::string>& today){
+    std::cout<<"Today's are ";
+    std::cout<<"{ ";
+    for (const std::string& order :today){ 
+        std::cout<<order<<" , ";
+    }
+    std::cout<<" } \n";
+    std::cout<<"Today size { "<<today.size()<<"}\n";
+    std::cout<<"Today capacity { "<<today.capacity()<<"}\n";
 
 }
