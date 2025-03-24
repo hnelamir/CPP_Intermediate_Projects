@@ -1,57 +1,6 @@
+#include "taskmanager.hpp"
+#include <thread>
 #include <iostream>
-#include <string>
-#include <stack>
-#include <queue>
-//#define FIFO 
-/*---------------functions Declartions ---------------------------------*/
-
-
-
-/*---------------Classes---------------------------------*/
-class Process{
-private:
-    int id;
-    std::string name;
-    int priority;
-public:
-    Process(int& x,std::string& y,int& number){
-        this->id=x;
-        this->name=y;
-        this->priority=number;
-        }
-    void display(){
-        std::cout<<"ID: "<<id<<std::endl;
-        std::cout<<"Name: "<<name<<std::endl;
-        std::cout<<"Priority: "<<priority<<std::endl;}
-};
-
-class TaskManger{
-private:
-    std::stack<Process> tasks;
-public:
-   void pushInner(int x, std::string y,int number){
-        tasks.push(Process(x,y,number));
-   }
-   void printTop(){
-         tasks.top().display();
-   }
-   void printList(){
-        std::stack<Process>temp=tasks;// the problem is here
-        while (!temp.empty()) {
-            temp.top().display();
-            temp.pop();
-        }
-   }
-};
-class TaskFIFO:public TaskManger{
-private:
-    std::queue<Process> tasks;
-public:
-
-};
-/*      
-    
-*/
 /*---------------------Main---------------------------------*/
 int main(){
     /*  
@@ -78,16 +27,22 @@ int main(){
         )
         3. create Taskmanager Class(Queue)
     */
-    int input;
-    TaskManger test;
-    TaskFIFO test2;
-    test.pushInner(10, "hussien",1);
-    test.pushInner(2, "omar", 2);
-    //test.printTop();
-    test.printList();
-    test2.pushInner(5, "ahmed", 3);
-    test2.pushInner(2, "omar", 2);
-   // test2.printTop();
-    test.printList();
+    char menuInput;
+    Task::welcomeScreen();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    while (1) {
+        Task::menuOptions();
+        std::cin>>menuInput;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');//to clear any leftover characters (\n) from the input buffer before calling it.
+        switch (menuInput) {
+            case '1':
+                break;
+            default:
+                break;
+        
+        }
+    }
   
 }
+
+

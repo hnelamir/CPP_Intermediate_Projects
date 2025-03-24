@@ -153,6 +153,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskManager.dir/build.make CMakeFiles/TaskManager.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/taskmanager.o: src/taskmanager.cpp.o
+.PHONY : src/taskmanager.o
+
+# target to build an object file
+src/taskmanager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskManager.dir/build.make CMakeFiles/TaskManager.dir/src/taskmanager.cpp.o
+.PHONY : src/taskmanager.cpp.o
+
+src/taskmanager.i: src/taskmanager.cpp.i
+.PHONY : src/taskmanager.i
+
+# target to preprocess a source file
+src/taskmanager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskManager.dir/build.make CMakeFiles/TaskManager.dir/src/taskmanager.cpp.i
+.PHONY : src/taskmanager.cpp.i
+
+src/taskmanager.s: src/taskmanager.cpp.s
+.PHONY : src/taskmanager.s
+
+# target to generate assembly for a file
+src/taskmanager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TaskManager.dir/build.make CMakeFiles/TaskManager.dir/src/taskmanager.cpp.s
+.PHONY : src/taskmanager.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +189,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/taskmanager.o"
+	@echo "... src/taskmanager.i"
+	@echo "... src/taskmanager.s"
 .PHONY : help
 
 

@@ -9,6 +9,7 @@ include_directories(includes/ utils/)
 
 set(SOURCE
 src/main.cpp
+src/taskmanager.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCE})

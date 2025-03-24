@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/TaskManager.dir/src/main.cpp.o -o TaskManager 
+/usr/bin/g++ -g -rdynamic CMakeFiles/TaskManager.dir/src/main.cpp.o CMakeFiles/TaskManager.dir/src/taskmanager.cpp.o -o TaskManager 
