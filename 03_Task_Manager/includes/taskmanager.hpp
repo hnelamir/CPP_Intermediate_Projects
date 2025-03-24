@@ -6,10 +6,7 @@
 #include <queue>
 namespace Task {
 
-
-/*---------------functions Declartions ---------------------------------*/
-void welcomeScreen();
-void menuOptions();
+enum {add=1,view,execute,list,exit};
 /*----------------Classes-------------------*/
 class Process{
     private:
@@ -17,7 +14,7 @@ class Process{
         std::string name;
         int priority;
     public:
-        Process(int& x,std::string& y,int& number);
+        Process(int& ID,std::string& Process,int& Priorty);
         void display();
     };
     
@@ -25,7 +22,7 @@ class TaskManager{
     private:
         std::stack<Process> tasks;
     public:
-       TaskManager(int x, std::string y,int number);
+       void TaskManagerAdd(int& ID, std::string& processName,int& priorityNum);
        void printTop();
        void printList();
     };
@@ -36,8 +33,10 @@ class TaskFIFO:public TaskManager{
     public:
     
     };
-
-
+/*---------------functions Declartions ---------------------------------*/
+void welcomeScreen();
+void menuOptions();
+void addProcess(TaskManager& tempStack,TaskFIFO& tempQueue);
 
 
 

@@ -23,11 +23,14 @@ int main(){
             -adding the members.
             -adding the constructor.
             -adding display method.
-        2. create Taskmanager Class(Stack
-        )
+        2. create Taskmanager Class(Stack)
         3. create Taskmanager Class(Queue)
+    Main:
+        1. Add process Function created.
     */
-    char menuInput;
+    int menuInput;
+    Task::TaskManager mainStack;
+    Task::TaskFIFO mainQueue;
     Task::welcomeScreen();
     std::this_thread::sleep_for(std::chrono::seconds(1));
     while (1) {
@@ -35,7 +38,18 @@ int main(){
         std::cin>>menuInput;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');//to clear any leftover characters (\n) from the input buffer before calling it.
         switch (menuInput) {
-            case '1':
+            case Task::add:
+                Task::addProcess(mainStack,mainQueue);
+                break;
+            case Task::view:
+                break;
+            case Task::execute:
+                break;
+            case Task::list:
+                break;    
+            case Task::exit:
+                std::cout<<"Good Bye !!\n";
+                return 0;
                 break;
             default:
                 break;

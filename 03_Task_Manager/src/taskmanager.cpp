@@ -1,14 +1,15 @@
 #include <iostream>
+#include <string>
 #include "taskmanager.hpp"
 
 namespace Task {
 
 
 /*---------------Process Class methods----------------- */
-Process::Process(int& x,std::string& y,int& number){
-    this->id=x;
-    this->name=y;
-    this->priority=number;
+Process::Process(int& ID,std::string& Process,int& Priorty){
+    this->id=ID;
+    this->name=Process;
+    this->priority=Priorty;
     }
 void Process::display(){
     std::cout<<"ID: "<<id<<std::endl;
@@ -16,8 +17,8 @@ void Process::display(){
     std::cout<<"Priority: "<<priority<<std::endl;}
 
 /*---------------TaskManager Class methods----------------- */
-TaskManager::TaskManager(int x, std::string y,int number){
-    tasks.push(Process(x,y,number));
+void TaskManager::TaskManagerAdd(int& ID, std::string& processName,int& priorityNum){
+    tasks.push(Process(ID,processName,priorityNum));
 }
 void TaskManager::printTop(){
     tasks.top().display();
@@ -41,7 +42,35 @@ void menuOptions(){
     std::cout<<"\t2. View Next Process:\n";
     std::cout<<"\t3. Execute Process:\n";
     std::cout<<"\t4. List all Processes\n";
+    std::cout<<"\t5. Exit the Program!\n";
+}
+void addProcess(TaskManager& tempStack,TaskFIFO& tempQueue){
+    int tempID,tempPriority,tempInput;
+    std::string tempProcess;
+    std::cout<<"\t\tEnter Unique ID:\n";
+    std::cin>>tempID;
+    std::cout<<"\t\tEnter Process Name:\n";
+    std::getline(std::cin,tempProcess);
+    std::cout<<"\t\tEnter Priority:\n";
+    std::cin>>tempPriority;
+    std::cout<<"\t\t1.Stack or 2.Queue\n";
+    std::cin>>tempInput;
+    while (1) {
+        if(tempInput==1){
+            tempStack.TaskManagerAdd(tempID, tempProcess, tempPriority);
+            return;
+        }
+        else if (tempInput==2) {
+            tempQueue.TaskManagerAdd(tempID, tempProcess, tempPriority);
+            return;
+        }
+        else {
+            std::cout<<"Wrong input\n";
+        }
+    }
+    std::cout<<"Process Added sucessfully!\n";
 
+    
 }
 
 
