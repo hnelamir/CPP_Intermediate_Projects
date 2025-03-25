@@ -27,6 +27,7 @@ int main(){
         3. create Taskmanager Class(Queue)
     Main:
         1. Add process Function created.
+    Finish the project now working in bonus features
     */
     int menuInput;
     Task::TaskManager mainStack;
@@ -42,16 +43,20 @@ int main(){
                 Task::addProcess(mainStack,mainQueue);
                 break;
             case Task::view:
+                Task::printNextProcess(mainStack, mainQueue);
                 break;
             case Task::execute:
+                Task::excuteProcess(mainStack, mainQueue);
                 break;
             case Task::list:
+                Task::printAllProcesses(mainStack, mainQueue);
                 break;    
             case Task::exit:
                 std::cout<<"Good Bye !!\n";
                 return 0;
                 break;
             default:
+                std::cout<<"Wrong Input!\n";
                 break;
         
         }

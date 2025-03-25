@@ -22,7 +22,9 @@ class TaskManager{
     private:
         std::stack<Process> tasks;
     public:
-       void TaskManagerAdd(int& ID, std::string& processName,int& priorityNum);
+       void taskManagerAdd(int& ID, std::string& processName,int& priorityNum);
+       void taskManagerRemove();
+       bool taskEmpty();
        void printTop();
        void printList();
     };
@@ -37,32 +39,9 @@ class TaskFIFO:public TaskManager{
 void welcomeScreen();
 void menuOptions();
 void addProcess(TaskManager& tempStack,TaskFIFO& tempQueue);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void printNextProcess(TaskManager& tempStack,TaskFIFO& tempQueue);
+void printAllProcesses(TaskManager& tempStack,TaskFIFO& tempQueue);
+void excuteProcess(TaskManager& tempStack,TaskFIFO& tempQueue);
 
 
 
