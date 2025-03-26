@@ -28,6 +28,8 @@ int main(){
     Main:
         1. Add process Function created.
     Finish the project now working in bonus features
+    Bonus:
+        1.working to implement the sorting function
     */
     int menuInput;
     Task::TaskManager mainStack;
@@ -41,6 +43,7 @@ int main(){
         switch (menuInput) {
             case Task::add:
                 Task::addProcess(mainStack,mainQueue);
+                Task::sortProcesses(mainStack, mainQueue);
                 break;
             case Task::view:
                 Task::printNextProcess(mainStack, mainQueue);

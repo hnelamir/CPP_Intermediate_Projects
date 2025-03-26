@@ -16,6 +16,7 @@ class Process{
     public:
         Process(int& ID,std::string& Process,int& Priorty);
         void display();
+        bool operator<(const Process& other) const;
     };
     
 class TaskManager{
@@ -24,6 +25,7 @@ class TaskManager{
     public:
        void taskManagerAdd(int& ID, std::string& processName,int& priorityNum);
        void taskManagerRemove();
+       void taskSort();
        bool taskEmpty();
        void printTop();
        void printList();
@@ -33,17 +35,18 @@ class TaskFIFO:public TaskManager{
     private:
         std::queue<Process> tasks;
     public:
-    
+        void taskSort();
+        void printTop();
+        void printList();
+
     };
 /*---------------functions Declartions ---------------------------------*/
 void welcomeScreen();
 void menuOptions();
 void addProcess(TaskManager& tempStack,TaskFIFO& tempQueue);
 void printNextProcess(TaskManager& tempStack,TaskFIFO& tempQueue);
-void printAllProcesses(TaskManager& tempStack,TaskFIFO& tempQueue);
 void excuteProcess(TaskManager& tempStack,TaskFIFO& tempQueue);
-
-
-
+void printAllProcesses(TaskManager& tempStack,TaskFIFO& tempQueue);
+void sortProcesses(TaskManager& tempStack,TaskFIFO& tempQueue);
 }
 #endif

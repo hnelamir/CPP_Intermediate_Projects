@@ -1,6 +1,10 @@
+#include <algorithm>
 #include <iostream>
 #include <limits>
+#include <pthread.h>
+#include <stack>
 #include <string>
+#include <vector>
 #include "taskmanager.hpp"
 
 namespace Task {
@@ -16,6 +20,10 @@ void Process::display(){
     std::cout<<"ID: "<<id<<std::endl;
     std::cout<<"Name: "<<name<<std::endl;
     std::cout<<"Priority: "<<priority<<std::endl;}
+bool Process::operator<(const Process& other) const{
+    if(this->priority==other.priority){return this->name<other.name;}
+    return this->priority>other.priority;
+}
 
 /*---------------TaskManager Class methods----------------- */
 void TaskManager::taskManagerAdd(int& ID, std::string& processName,int& priorityNum){
@@ -23,6 +31,19 @@ void TaskManager::taskManagerAdd(int& ID, std::string& processName,int& priority
 }
 void TaskManager::taskManagerRemove(){
     tasks.pop();
+}
+void TaskManager::taskSort(){
+    std::vector<Process>temp;
+    std::stack<Process>tempStack=this->tasks;
+    while(!tempStack.empty()){
+        temp.push_back(tempStack.top());
+        tempStack.pop();
+    }
+    std::sort(temp.begin(),temp.end());
+    for(auto& process:temp){
+        tempStack.push(process);
+    }
+    this->tasks=tempStack;
 }
 bool TaskManager::taskEmpty(){
     return tasks.empty();
@@ -36,8 +57,32 @@ void TaskManager::printList(){
         temp.top().display();
         temp.pop();
     }
+
 }
 /*---------------TaskManager(FIFO) Class methods----------------- */
+void TaskFIFO::taskSort(){
+    std::vector<Process>temp;
+    std::queue<Process>tempQueue=this->tasks;
+    while(!tempQueue.empty()){
+        temp.push_back(tempQueue.front());
+        tempQueue.pop();
+    }
+    std::sort(temp.begin(),temp.end());
+    for(auto& process:temp){
+        tempQueue.push(process);
+    }
+    this->tasks=tempQueue;
+}
+void TaskFIFO::printTop(){
+    tasks.front().display();
+}
+void TaskFIFO::printList(){
+    std::queue<Process>temp=tasks;// the problem is here
+    while (!temp.empty()) {
+        temp.front().display();
+        temp.pop();
+    }
+}
 /*----------------Functions -------------------------------------------- */
 void welcomeScreen(){
     std::cout<<"Program Started....\n";
@@ -94,12 +139,6 @@ void printNextProcess(TaskManager& tempStack,TaskFIFO& tempQueue){
         std::cout<<"Queue is Empty!\n";
     }
 }
-void printAllProcesses(TaskManager& tempStack,TaskFIFO& tempQueue){
-    std::cout<<"The all Processes in Stack is :\n";
-    tempStack.printList();
-    std::cout<<"The all Processes in Queue is :\n";
-    tempQueue.printList();
-}
 void excuteProcess(TaskManager& tempStack,TaskFIFO& tempQueue){
     int tempInput;
     std::cout<<"Do you want Excute the process in 1.Stack or 2.Queue\n";
@@ -124,6 +163,26 @@ void excuteProcess(TaskManager& tempStack,TaskFIFO& tempQueue){
         }
     }
     std::cout<<"Process excuted sucessfully!\n";
+}
+void printAllProcesses(TaskManager& tempStack,TaskFIFO& tempQueue){
+    std::cout<<"The all Processes in Stack is :\n";
+    tempStack.printList();
+    std::cout<<"The all Processes in Queue is :\n";
+    tempQueue.printList();
+}
+void sortProcesses(TaskManager& tempStack,TaskFIFO& tempQueue){
+    if(!tempStack.taskEmpty()){
+        tempStack.taskSort();
+    }
+    else {
+        std::cout<<"Stack is Empty!\n";
+    }
+    if (!tempQueue.taskEmpty()) {
+        tempQueue.taskSort();
+    }
+    else {
+        std::cout<<"Queue is Empty!\n";
+    }
 }
 
 }
