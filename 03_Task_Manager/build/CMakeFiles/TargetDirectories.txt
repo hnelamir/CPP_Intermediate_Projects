@@ -1,3 +1,0 @@
-/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/03_Task_Manager/build/CMakeFiles/TaskManager.dir
-/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/03_Task_Manager/build/CMakeFiles/edit_cache.dir
-/home/hnelamir/EL/04_Inter_CPP/CPP_Intermediate_Projects/03_Task_Manager/build/CMakeFiles/rebuild_cache.dir
