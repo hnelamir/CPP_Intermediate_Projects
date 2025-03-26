@@ -33,17 +33,16 @@ void TaskManager::taskManagerRemove(){
     tasks.pop();
 }
 void TaskManager::taskSort(){
-    std::vector<Process>temp;
-    std::stack<Process>tempStack=this->tasks;
-    while(!tempStack.empty()){
-        temp.push_back(tempStack.top());
-        tempStack.pop();
+    std::vector<Process> temp;
+    temp.reserve(this->tasks.size()); // Pre-allocate to avoid reallocations
+    while (!this->tasks.empty()) {
+        temp.push_back(std::move(this->tasks.top()));
+        this->tasks.pop();
     }
-    std::sort(temp.begin(),temp.end());
-    for(auto& process:temp){
-        tempStack.push(process);
+    std::sort(temp.begin(), temp.end());
+    for (auto& process : temp) {
+        this->tasks.push(std::move(process));
     }
-    this->tasks=tempStack;
 }
 bool TaskManager::taskEmpty(){
     return tasks.empty();
@@ -61,17 +60,16 @@ void TaskManager::printList(){
 }
 /*---------------TaskManager(FIFO) Class methods----------------- */
 void TaskFIFO::taskSort(){
-    std::vector<Process>temp;
-    std::queue<Process>tempQueue=this->tasks;
-    while(!tempQueue.empty()){
-        temp.push_back(tempQueue.front());
-        tempQueue.pop();
+    std::vector<Process> temp;
+    temp.reserve(this->tasks.size()); // Pre-allocate to avoid reallocations
+    while (!this->tasks.empty()) {
+        temp.push_back(std::move(this->tasks.front()));
+        this->tasks.pop();
     }
-    std::sort(temp.begin(),temp.end());
-    for(auto& process:temp){
-        tempQueue.push(process);
+    std::sort(temp.begin(), temp.end());
+    for (auto& process : temp) {
+        this->tasks.push(std::move(process));
     }
-    this->tasks=tempQueue;
 }
 void TaskFIFO::printTop(){
     tasks.front().display();
